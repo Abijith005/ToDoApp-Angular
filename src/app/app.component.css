@@ -1,0 +1,7 @@
+.heading{
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#strikeTask{
+    text-decoration-line: line-through;
+}

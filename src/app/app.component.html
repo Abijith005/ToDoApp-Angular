@@ -1,0 +1,47 @@
+<div class="container-fluid bg-light">
+  <div class="container bg-light">
+
+    <div class="row mt-4" style="height: 500px;">
+      <div class="col"></div>
+
+      <div class="col-md-6 bg-white shadow">
+        <div class="card bg-info mt-4 shadow">
+          <h2 class="heading text-white text-center ps-3 pt-2 pb-2">To Do List</h2>
+        </div>
+
+        <div class="shadow">
+          <div class="input-group mb-0 mt-3 p-3 ">
+            <input type="text" class="form-control" placeholder="Add New Task" #taskInput="ngModel" [(ngModel)]="task" required >
+            <button (click)="onTaskAdd(taskInput.value);" *ngIf="!editTask" class="btn btn-outline-success" type="button" id="button-addon2">Add</button>
+            <button (click)="onTaskEdit(taskInput.value);" *ngIf="editTask"  class="btn btn-outline-info" type="button" id="button-addon2">Edit</button>
+          </div>
+          <p *ngIf="taskInput.value.trim()==''&&submitted==true" class="ps-3 text-danger">Task Required </p>
+        </div>        
+        <h4 class="ps-2 mt-4 mb-3 text-warning">Tasks :</h4>
+        <div style="overflow-y:auto;" *ngFor="let item of taskArray;let i=index">
+          <div class="m-2">
+            <div class="p-2 shadow">
+              <div class="input-group row ps-3">
+                <div class="card col-md-10 border-0">
+                  <div class="form-check d-flex justify-content-between">
+                    <div>
+                      <input class="form-check-input border-1 border-secondary" [checked]="item.isCompleted"  type="checkbox" (change)="checkCompleted(i)" aria-label="Checkbox">
+                      <label class="form-check-label" [attr.id]="item.isCompleted?'strikeTask':''" style="overflow-x: hidden;">{{item.task}}</label>
+                    </div>
+                    <div class="ms-auto">
+                      <i *ngIf="!item.isCompleted" (click)="edit(i)" class="ri-edit-box-line me-4"></i>
+                      <i (click)="delete(i)" class="ri-delete-bin-6-line me-4"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</div>
